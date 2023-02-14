@@ -36,18 +36,14 @@ const agregarProductos = (prodId) => {
     if(existe){
         const prod = carrito.map(prod => {
        // console.log(prod)
-            // if(prod.id === prodId){
-            //     prod.cantidad++
-            // }
-
-            //OPERAADOR TERNARIO
-            prod.id === prodId ? prod.cantidad++ : false
+        //OPERADOR TERNARIO
+        prod.id === prodId ? prod.cantidad++ : false
         })
     }else{
         //busco que coincida el id y cargo el producto al carrito
         const item = productos.find((prod) => prod.id === prodId)
         carrito.push(item)
-        console.log(carrito)       
+              
     }
     pintarProductosEnCarrito()
 }
@@ -55,6 +51,7 @@ const agregarProductos = (prodId) => {
 function eliminarDelCarrito(id){
     const prodId = id
     carrito = carrito.filter((prod) => prod.id !== prodId)
+    console.log(carrito) 
     // llamo a la funcion que muestra el carrito
     pintarProductosEnCarrito()
 }
@@ -86,17 +83,8 @@ const pintarCard = (categoria) => {
    
     //creo una variable auxiliar y pregunto si existe la categoria
     let prodAMostrar;
-    //OPERADOR TERNARIO
+    //OPERADOR TERNARIO - guardo una copia del array original - sino existe la categoria que muestre el array original
     categoria ? prodAMostrar = categoria : prodAMostrar = productos;
-
-    // if(categoria){
-    //     //guardo una copia del array original
-    //     prodAMostrar = categoria
-    // }else{
-    //     //sino existe la categoria que muestre el array original
-    //     prodAMostrar = productos
-    // }
-    
     // recorro la copia 
     prodAMostrar.forEach((producto) =>{
        
@@ -165,10 +153,6 @@ const pintarProductosEnCarrito = () =>{
         //EVENTO QUE ESCUCHA EL BOTON RESTAR, SUMAR Y VACIAR DENTRO DEL CARRITO
         const restar = document.getElementById(`restar${producto.id}`)
         restar.addEventListener("click" , ()=>{
-            // if(producto.cantidad !== 1){
-            //     producto.cantidad--;
-            //     pintarProductosEnCarrito()
-            // }
             //OPERADOR TERNARIO
             let cantidad = producto.cantidad !== 1 ? producto.cantidad-- : false
             cantidad ? pintarProductosEnCarrito() : false
@@ -187,15 +171,6 @@ const pintarProductosEnCarrito = () =>{
     })
     //por cada producto, el acumulador le sume precio al prod 
     totalSumaProductos.innerText = carrito.reduce((acc, prod) => acc + prod.precio * prod.cantidad, 0)
-    
-    // mostrar cartel cuando no hay nada en el carrito
-    // if(carrito.length === 0){
-    //     carritoContenedor.innerHTML = `
-    //     <p class="text-center text-primary "> !No Hay Productos! </p>`
-    // }else{
-    //     console.log("algo")
-    // }
-
     //OPERAADOR TERNARIO -  mostrar cartel cuando no hay nada en el carrito
     carrito.length === 0 ? carritoContenedor.innerHTML = `<p class="text-center text-primary "> !No Hay Productos! </p>` : false
     //IGUALA CANTIDADES DEL CARRITO DEL HEADER A LO QUE TENGA EL CARRITO
