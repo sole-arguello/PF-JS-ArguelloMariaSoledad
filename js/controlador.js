@@ -5,6 +5,7 @@ const contenedorCarrito = document.getElementById("carritoContenedor")
 const totalSumaProductos = document.getElementById("precioTotal")
 const contTituloCategoria = document.getElementById("tituloCategoria")
 
+
 //CONTENEDOR BOTON VACIAR CARRITO
 const vaciarCarrito = document.getElementById("vaciarCarrito")
 
@@ -46,6 +47,25 @@ const agregarProductos = (prodId) => {
               
     }
     pintarProductosEnCarrito()
+}
+//FUNCION ALERTA DE PRODUCTOS AGREGADOS
+const alertaAgregarProductos = () => {
+    Toastify({
+        text: "Agragado al carrito de compras",
+        duration: 2000,
+        gravity: "top",
+        //position: "right",
+        offset:{
+            x:80,
+            y:70,
+        },
+        style: {
+            color: "black",
+            background: "linear-gradient(62deg, #FBAB7E 0%, #ffffff 99%)",
+            borderRadius: "15%",
+            border: "ipx solid black"
+        }
+    }).showToast()
 }
 //FUNCION DE ELIMINAR PRODUCTO DE A UNO DENTRO DEL CARRITO 
 function eliminarDelCarrito(id){
@@ -112,7 +132,9 @@ const pintarCard = (categoria) => {
         const boton = document.getElementById(`${id}`)
         // console.log(boton)
         boton.addEventListener("click", function(){
+            alertaAgregarProductos()
             agregarProductos(id)
+            
         })
     })   
 
