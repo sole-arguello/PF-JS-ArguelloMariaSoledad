@@ -1,0 +1,44 @@
+.carrito{
+    .carrito__cont {
+        .carrito__cont--cont{
+            .carrito__cont--cont-body {
+                .carrito__body{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-evenly;
+                    .body__img{
+                        width: 100px;
+                        height: 100px;
+                    }
+                    .body__info{
+                        justify-content: center;
+                        width: 50%;
+                        .body__cant {
+                            justify-content: center;
+                            .signos{
+                                cursor: pointer;
+                            }
+                        }
+                        .body__btnElim{
+                            color: red;
+                            cursor: pointer;
+                            
+                        }
+                    }
+                }
+            }
+            .carrito__cont--cont-footer{
+                .footer__precio{}
+                .footer__botones{
+                    .footer_btnVaciar{
+                        
+                    }
+                    .footer__btnConfirmar{
+
+                    }
+                }
+
+            }
+        }
+    }
+}

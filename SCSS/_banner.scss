@@ -1,0 +1,16 @@
+main{
+    .banner{
+        &__portada{
+            &--contenedor{
+                .img__portada {
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    margin-top: 90px;
+                    height: 350px;
+                }
+            }
+        }
+
+    }
+}

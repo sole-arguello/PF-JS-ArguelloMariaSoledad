@@ -1,0 +1,20 @@
+.header{
+    &__nav{
+        background: rgb(250, 243, 229);
+        box-shadow: 0px 2px 5px rgb(154, 153, 153);
+        &--container{
+            &-logo{
+                border-radius: 100%;
+                width: 30%;
+                height: 30%;
+            }
+            &-menu{
+                .btnCarrito{
+                    background: rgb(250, 243, 229); 
+                }
+            }
+        }
+    }
+}
+
+

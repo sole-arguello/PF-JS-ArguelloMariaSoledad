@@ -1,0 +1,131 @@
+// @include media-breakpoint-up(sm) {
+
+// }
+@include media-breakpoint-up(sm) { 
+    main{
+        .banner{
+            &__portada{
+                &--contenedor{
+                    .img__portada {
+                        margin-top: 100px;
+                        height: 600px;
+                    }
+                }
+            }
+    
+        }    
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .header{
+        &__nav{
+            &--container{
+                &-logo{
+                    width: 15%;
+                    height: 15%;
+                }
+            }
+        }
+    }
+    main{
+        .banner{
+            &__portada{
+                &--contenedor{
+                    .img__portada {
+                        margin-top: 90px;
+                    }
+                }
+            }
+    
+        }
+
+        .productos{
+            &__titulo{
+                font-size: 3rem;
+            }
+        }
+    }
+
+}
+@include media-breakpoint-up(lg){
+    .header{
+        &__nav{
+            &--container{
+                &-logo{
+                    width: 15%;
+                    height: 15%;
+                }
+            }
+        }
+    }
+    .carrito{
+        .carrito__cont {
+            .carrito__cont--cont{
+                .carrito__cont--cont-body {
+                    .carrito__body{
+                        
+                        .body__img{
+                            width: 100px;
+                            height: 100px;
+                        }
+                        .body__info{
+                            width: 70%;
+                            display: flex;
+                            justify-content: space-around;
+                            .body__cant {
+                                .signos{
+                                    cursor: pointer;
+                                }
+                            }
+                            .body__btnElim{
+                                color: red;
+                                cursor: pointer;
+                                margin-right: 50px;
+                            }
+                        }
+                    }
+                }
+                .carrito__cont--cont-footer{
+                    .footer__precio{}
+                    .footer__botones{
+                        .footer_btnVaciar{
+                            
+                        }
+                        .footer__btnConfirmar{
+    
+                        }
+                    }
+    
+                }
+            }
+        }
+    }
+}
+@include media-breakpoint-up(xl){
+    .header{
+        &__nav{
+            &--container{
+                &-logo{
+                    width: 7%;
+                    height: 7%;
+                }
+            }
+        }
+    }
+    main{
+        .banner{
+            .banner__portada{
+                .banner__portada--contenedor{
+                    .img__portada {
+                        height: 550px;
+                    }
+                }
+            }
+    
+        }
+    }
+}
+
+
+

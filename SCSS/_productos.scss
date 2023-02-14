@@ -1,0 +1,29 @@
+main{
+    .productos{
+        padding: 0 20px;
+        &__titulo{
+            font-size: 2.5rem;
+            padding-top: 100px;
+            padding-bottom: 30px;
+        }
+        &__contenedorGral{
+            padding: 0;
+            .productos__contenedorGral--contCard{
+                .productos__contenedorGral--contCard-card{
+                    .img__card{
+                        height: 300px;
+                    }
+                    .contenedor__body{
+                        &--info{
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                    }
+                    .contenedor__body--btn{
+                        background: rgb(240, 225, 200); 
+                    }
+                }
+            }
+        }
+    }
+}
