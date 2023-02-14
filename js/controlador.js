@@ -87,30 +87,32 @@ const pintarCard = (categoria) => {
     categoria ? prodAMostrar = categoria : prodAMostrar = productos;
     // recorro la copia 
     prodAMostrar.forEach((producto) =>{
-       
+        //DESTRUCTURING
+        const {id, precio, titulo, img }= producto
+        //INYECTO LAS CARD EN EL DOM
         const content = document.createElement("div")
         content.classList.add("productos__contenedorGral--contCard", "col")
         content.innerHTML = `
         <div class="productos__contenedorGral--contCard-card card ">
-            <img class="img__card card-img-top" src=${producto.img} alt="producto lenceria">
+            <img class="img__card card-img-top" src=${img} alt="producto lenceria">
             <div class="contenedor__body card-body">
                 <div class="contenedor__body--info ">
-                    <h2 class="contenedor__body--info--titulo card-title fs-4">${producto.titulo}</h2> 
-                    <p class="contenedor__body--info--precio card-text fs-5 fw-semibold">$ ${producto.precio}</p>                   
+                    <h2 class="contenedor__body--info--titulo card-title fs-4">${titulo}</h2> 
+                    <p class="contenedor__body--info--precio card-text fs-5 fw-semibold">$ ${precio}</p>                   
                 </div>
                 <hr><p class="contenedor__body--info--precio card-text fs-6">Los talles disponibles
                 son<span class="fw-semibold mx-2">S - M - L - XL</span>y los podes elejir en
                 <span class="fw-semibold">Blanco - Negro - Gris - Beige - Rojo - Fuxia - Estampados</span></p> 
-                <button id=${producto.id} class="contenedor__body--btn btn btn-secondary text-dark" id="agregarCarrito">Agregar al carrito</button>
+                <button id=${id} class="contenedor__body--btn btn btn-secondary text-dark" id="agregarCarrito">Agregar al carrito</button>
             </div>
         </div>     
         `
         contenedorShop.appendChild(content)
         //EVENTO QUE ESCUCHA AL BOTON AGRAGAR PRODUCTOS
-        const boton = document.getElementById(`${producto.id}`)
+        const boton = document.getElementById(`${id}`)
         // console.log(boton)
         boton.addEventListener("click", function(){
-            agregarProductos(producto.id)
+            agregarProductos(id)
         })
     })   
 
@@ -124,52 +126,56 @@ const pintarProductosEnCarrito = () =>{
     let totalOfProducts= 0
     //recorre el array y lo llena con info actualizada
     carrito.forEach((producto) => {
+        //DESTRUCTURING
+        const {id, precio, titulo, cantidad, img} = producto
+        //INYECTO LOS PRODUCTOS EN EL DOM DEL CARRITO
         const contItemsCarrito = document.createElement("div")
         contItemsCarrito.classList.add("carrito__body", "carritoBody")
         contItemsCarrito.innerHTML = `
-            <img class="body__img" src="${ producto.img }">
+            <img class="body__img" src="${img }">
             <div class="body__info">
-                <p class="body__producto pt-lg-5 fs-5">${producto.titulo}</P>
-                <p class="body__precio  pt-lg-5 fs-5">Precio: <span class="fw-semibold">$${producto.precio}</span></p>          
+                <p class="body__producto pt-lg-5 fs-5">${titulo}</P>
+                <p class="body__precio  pt-lg-5 fs-5">Precio: <span class="fw-semibold">$${precio}</span></p>          
         
 
                 <div class="body__cant  pt-lg-5 d-flex">
-                    <span id="restar${producto.id}" class="restar pt-2" ><i class="bi bi-dash-square"></i></span>
-                    <span  class="num px-2 fs-3 pb-5" id="cantidad">${producto.cantidad}</span> 
-                    <span id ="sumar${producto.id}" class="signos pt-2" ><i class="bi bi-plus-square"></i></span>
+                    <span id="restar${id}" class="restar pt-2" ><i class="bi bi-dash-square"></i></span>
+                    <span  class="num px-2 fs-3 pb-5" id="cantidad">${cantidad}</span> 
+                    <span id ="sumar${id}" class="signos pt-2" ><i class="bi bi-plus-square"></i></span>
                 </div>
-                <p class="body__subtototal pt-lg-5 fs-5">Sub-total: <span class="fw-semibold text-center" id="cantidad"> $${producto.cantidad * producto.precio}</span></p>
+                <p class="body__subtototal pt-lg-5 fs-5">Sub-total: <span class="fw-semibold text-center" id="cantidad"> $${cantidad * precio}</span></p>
             
             </div>
-            <a id="eliminarDelCarrito${producto.id}" class="body__btnElim"><i class="bi bi-trash3 icono"></i></a> 
+            <a id="eliminarDelCarrito${id}" class="body__btnElim"><i class="bi bi-trash3 icono"></i></a> 
     
 
         `
         contenedorCarrito.appendChild(contItemsCarrito)
         //por cada click aumenta el numero del carrito
-        totalOfProducts = totalOfProducts + producto.cantidad
+        totalOfProducts = totalOfProducts + cantidad
         //console.log(totalOfProducts)
 
         //EVENTO QUE ESCUCHA EL BOTON RESTAR, SUMAR Y VACIAR DENTRO DEL CARRITO
-        const restar = document.getElementById(`restar${producto.id}`)
+        const restar = document.getElementById(`restar${id}`)
         restar.addEventListener("click" , ()=>{
             //OPERADOR TERNARIO
-            let cantidad = producto.cantidad !== 1 ? producto.cantidad-- : false
-            cantidad ? pintarProductosEnCarrito() : false
+            let cantidadARestar = cantidad !== 1 ? cantidad-- : false
+            cantidadARestar ? pintarProductosEnCarrito() : false
         })
-        const sumar = document.getElementById(`sumar${producto.id}`)
+        const sumar = document.getElementById(`sumar${id}`)
         sumar.addEventListener("click" , ()=>{
-            producto.cantidad++;
+            cantidad++;
             pintarProductosEnCarrito()
         })
 
-        const eliminar = document.getElementById(`eliminarDelCarrito${producto.id}`)
+        const eliminar = document.getElementById(`eliminarDelCarrito${id}`)
         eliminar.addEventListener("click", () =>{
-           eliminarDelCarrito(producto.id)
+           eliminarDelCarrito(id)
            pintarProductosEnCarrito()
         })
     })
-    //por cada producto, el acumulador le sume precio al prod 
+    
+    //por cada producto, el acumulador le sume precio al prod
     totalSumaProductos.innerText = carrito.reduce((acc, prod) => acc + prod.precio * prod.cantidad, 0)
     //OPERAADOR TERNARIO -  mostrar cartel cuando no hay nada en el carrito
     carrito.length === 0 ? carritoContenedor.innerHTML = `<p class="text-center text-primary "> !No Hay Productos! </p>` : false
