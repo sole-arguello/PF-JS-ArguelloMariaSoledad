@@ -4,6 +4,7 @@ const contadorCarrito = document.getElementById("contadorCarrito")
 const contenedorCarrito = document.getElementById("carritoContenedor")
 const totalSumaProductos = document.getElementById("precioTotal")
 const contTituloCategoria = document.getElementById("tituloCategoria")
+const confirmarCompra = document.getElementById("confirmarCompra")
 
 
 //CONTENEDOR BOTON VACIAR CARRITO
@@ -20,14 +21,26 @@ const btnBombis = document.getElementById("bombis")
 
 
 /*--------------------Get Storage-------------------------------*/
-let carrito = []
+
 //PARA LOCALSTORAGE DOCUMENT LISTENER
 document.addEventListener('DOMContentLoaded',()=>{
     carrito = JSON.parse(localStorage.getItem("carrito")) || [];
     pintarProductosEnCarrito()
 })
+
+let carrito = []
 //console.log(carrito)
 
+//ASINCRONICA
+const obtenerDatos = async () => {
+    try {
+    const res = await fetch("./array.js");
+    carrito = await res.json();
+    agregarProductos()
+    } catch (error) {
+        console.log(error);
+    };
+};
 
 //FUNION QUE AGREGA PRODUCTOS AL CARRITO -> en pintarCard
 const agregarProductos = (prodId) => {
@@ -81,6 +94,11 @@ vaciarCarrito.addEventListener("click", ()=>{
     pintarProductosEnCarrito()
 })
 
+//EVENTO QUE ESCUCHA BOTON CONFIRMAR COMPRA
+confirmarCompra.addEventListener("click", () =>{
+    
+})
+
 
 //FUNCION QUE FILTRA LAS CATEGORIAS -> en botones todos-conjunto-top-bombis
 const filtrarCategorias = (categoria) => {
@@ -114,7 +132,7 @@ const pintarCard = (categoria) => {
         content.classList.add("productos__contenedorGral--contCard", "col")
         content.innerHTML = `
         <div class="productos__contenedorGral--contCard-card card ">
-            <img class="img__card card-img-top" src=${img} alt="producto lenceria">
+            <img class="img__card card-img-top" src="${img}" alt="producto lenceria">
             <div class="contenedor__body card-body">
                 <div class="contenedor__body--info ">
                     <h2 class="contenedor__body--info--titulo card-title fs-4">${titulo}</h2> 
@@ -147,7 +165,7 @@ const pintarProductosEnCarrito = () =>{
     //para el incremento del numero en el carrito
     let totalOfProducts= 0
     //recorre el array y lo llena con info actualizada
-    carrito.forEach((producto) => {
+    carrito.forEach((producto) =>   {
         //DESTRUCTURING
         const {id, precio, titulo, cantidad, img} = producto
         //INYECTO LOS PRODUCTOS EN EL DOM DEL CARRITO
@@ -180,13 +198,14 @@ const pintarProductosEnCarrito = () =>{
         //EVENTO QUE ESCUCHA EL BOTON RESTAR, SUMAR Y VACIAR DENTRO DEL CARRITO
         const restar = document.getElementById(`restar${id}`)
         restar.addEventListener("click" , ()=>{
-            //OPERADOR TERNARIO
-            let cantidadARestar = cantidad !== 1 ? cantidad-- : false
-            cantidadARestar ? pintarProductosEnCarrito() : false
+            if(producto.cantidad !== 1){
+                producto.cantidad--;
+                pintarProductosEnCarrito()
+            }
         })
         const sumar = document.getElementById(`sumar${id}`)
         sumar.addEventListener("click" , ()=>{
-            cantidad++;
+            producto.cantidad++;
             pintarProductosEnCarrito()
         })
 
@@ -214,3 +233,4 @@ pintarCard()
 function guardarStorage(){
     localStorage.setItem("carrito", JSON.stringify(carrito))
 }
+ 
