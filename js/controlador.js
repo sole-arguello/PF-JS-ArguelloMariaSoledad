@@ -31,24 +31,20 @@ document.addEventListener('DOMContentLoaded',()=>{
 let carrito = []
 //console.log(carrito)
 
-//ASINCRONICA
-// const obtenerDatos = async () => {
-//     //  try {
-//     // const res = await fetch("./js/db.json");
-//     // carrito = await res.json();
-//     // console.log(carrito)
-    
-//     // //agregarProductos()
-//     // } catch (error) {
-//     //     console.log(error);
-//     // };
 
-//     fetch("./js/db.json")
-//     .then(res => res.json())
-//     .then(data => pintarCard(data))
-//     .catch(err => console.log(err))
-// };
-// obtenerDatos()
+//ASINCRONICA
+ 
+fetch("../db.json")
+    .then((res) => res.json())
+    .then((data) => {
+        //console.log(data)
+        //productos viene de mi array
+        productos = data;
+        pintarCard(data)
+    })
+    .catch((err) => console.log(err))
+
+
 
 //FUNION QUE AGREGA PRODUCTOS AL CARRITO -> en pintarCard
 const agregarProductos = (prodId) => {
