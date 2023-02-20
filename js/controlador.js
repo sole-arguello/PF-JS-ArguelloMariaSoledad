@@ -32,15 +32,23 @@ let carrito = []
 //console.log(carrito)
 
 //ASINCRONICA
-const obtenerDatos = async () => {
-    try {
-    const res = await fetch("./array.js");
-    carrito = await res.json();
-    agregarProductos()
-    } catch (error) {
-        console.log(error);
-    };
-};
+// const obtenerDatos = async () => {
+//     //  try {
+//     // const res = await fetch("./js/db.json");
+//     // carrito = await res.json();
+//     // console.log(carrito)
+    
+//     // //agregarProductos()
+//     // } catch (error) {
+//     //     console.log(error);
+//     // };
+
+//     fetch("./js/db.json")
+//     .then(res => res.json())
+//     .then(data => pintarCard(data))
+//     .catch(err => console.log(err))
+// };
+// obtenerDatos()
 
 //FUNION QUE AGREGA PRODUCTOS AL CARRITO -> en pintarCard
 const agregarProductos = (prodId) => {
@@ -80,6 +88,11 @@ const alertaAgregarProductos = () => {
         }
     }).showToast()
 }
+
+//FUNCION ALERTA BOTON CONFIRMAR COMPRA
+const alertaConfirmarCompra = () =>{
+    swal("Gracias por su compra!");
+}
 //FUNCION DE ELIMINAR PRODUCTO DE A UNO DENTRO DEL CARRITO 
 function eliminarDelCarrito(id){
     const prodId = id
@@ -88,15 +101,20 @@ function eliminarDelCarrito(id){
     // llamo a la funcion que muestra el carrito
     pintarProductosEnCarrito()
 }
-//EVENTO QUE ESCUCHA EL BOTON VACIAR CARRITO vacia todo el carrito
-vaciarCarrito.addEventListener("click", ()=>{
+//FUNCION VACIAR CARRITO
+const vaciaCarrito = () =>{
     carrito.length = []
     pintarProductosEnCarrito()
+}
+//EVENTO QUE ESCUCHA EL BOTON VACIAR CARRITO vacia todo el carrito
+vaciarCarrito.addEventListener("click", ()=>{
+    vaciaCarrito()
 })
 
 //EVENTO QUE ESCUCHA BOTON CONFIRMAR COMPRA
 confirmarCompra.addEventListener("click", () =>{
-    
+    alertaConfirmarCompra()
+    vaciaCarrito()
 })
 
 
