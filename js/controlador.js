@@ -32,13 +32,13 @@ let carrito = []
 //console.log(carrito)
 
 
-//ASINCRONICA
- 
+//ASINCRONICA por medio de fetch accedo al JSON
+
 fetch("../db.json")
     .then((res) => res.json())
     .then((data) => {
         //console.log(data)
-        //productos viene de mi array
+        //productos viene de mi array.js vacio
         productos = data;
         pintarCard(data)
     })
