@@ -69,7 +69,7 @@ const agregarProductos = (prodId) => {
 const alertaAgregarProductos = () => {
     Toastify({
         text: "Agragado al carrito de compras",
-        duration: 2000,
+        duration: 1000,
         gravity: "top",
         //position: "right",
         offset:{
