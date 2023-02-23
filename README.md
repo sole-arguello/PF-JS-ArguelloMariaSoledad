@@ -1,10 +1,6 @@
 # PF-JS-ArguelloMariaSoledad: Simulador Interactivo (Ultima parte)
     Deberás entregar el simulador final funcionando, en un archivo 
     HTML con sus archivos JS complementarios.
-    
-    Recuerda que cuentas con 10 días (de corrido) para subir tu Proyecto Final. 
-    Pasado este plazo, el botón de entrega se inhabilitará.
-
       
 ### DEMO: https://sole-arguello.github.io/PF-JS-ArguelloMariaSoledad/
 
