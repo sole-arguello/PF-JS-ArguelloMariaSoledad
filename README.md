@@ -48,3 +48,8 @@
      * Al menos una librería de uso relevante para el proyecto
      * Manejo de promesas con fetch.
      * Carga de datos desde un JSON local o desde una API externa.
+### Nota obtenida:
+![imagen](nota.png)
+
+### Devolucion:
+![imagen](devolucion.png)
