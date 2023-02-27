@@ -50,7 +50,7 @@
      * Carga de datos desde un JSON local o desde una API externa.
      
 ### Nota obtenida:
-![imagen](img/nota.png)
+![imagen](nota.png)
 
 ### Devolucion:
 ![imagen](devolucion.png)
