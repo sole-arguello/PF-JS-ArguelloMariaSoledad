@@ -1,4 +1,4 @@
-# PF-JS-ArguelloMariaSoledad: Simulador Interactivo (Ultima parte)
+# PF-JS-ArguelloMariaSoledad: <br>Simulador Interactivo (Ultima parte)
     Deberás entregar el simulador final funcionando, en un archivo 
     HTML con sus archivos JS complementarios.
       
